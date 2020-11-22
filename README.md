@@ -38,7 +38,7 @@ X-User-Id: {tr:b64()}'and''='{tr}
 X-User-Id: {tr:b64()}../../../../../../../../../etc/passwd{tr}
 end so on...
 ```
-Will replaced by the Transformer to the following values:
+Will be replaced by the Transformer to the following values:
 ```
 X-User-Id: J2FuZCcnPSc=
 X-User-Id: Li4vLi4vLi4vLi4vLi4vLi4vLi4vLi4vLi4vZXRjL3Bhc3N3ZA==
@@ -52,7 +52,7 @@ There are more encoding transformations:
 1. json()
 1. url()
 
-It is worth noting that transformations can be chained using & operator:
+Transformations can be chained using & operator:
 ```
 X-User-Id: {tr:b64()&url()&hex()}'and''='{tr}
 ```
@@ -148,7 +148,7 @@ There are more data generating transformations:
 1. long(len)
 1. uuid()
 
-Of course, data generating and encoding transformations can be chained using & operator, e.g.:
+Data generating and encoding transformations can be chained using & operator, e.g.:
 ```
 name=foo&lastname={tr:long(50)&b64()&url()}{tr}
 ```
@@ -176,7 +176,7 @@ transformations = {
     'random': lambda params, data: str(random.randint(int(params[0]), int(params[1]))),
 }
 ```
-The new transformation could look like this:
+A new transformation could look like this:
 ```python
 transformations = {
 [...]
@@ -194,7 +194,7 @@ name={tr:random(1,100)&repeat(3)}{tr}
 Use chaining instead.
 1. Transformations parser is a simple (naive) regexp-based implementation and could not work when special characters will be used as a transformation parameter.
 Let's say you define transformation that accepts string parameter, using it as follow {tr:foo(abc&de)}{tr} will not work.
-1. Please be aware that Transformer is a simple tool that was created to deal with the specific cases I noticed during my work, and may not support all possible inputs, e.g. b64() transformer will fail for non-ascii data.
+1. Transformer is a simple tool that was created to deal with the specific cases I noticed during my work, and may not support all possible inputs, e.g. b64() transformer will fail for non-ascii data.
 In such case, just write own transformation that will handle your specific case.
 
 ## Warnings
