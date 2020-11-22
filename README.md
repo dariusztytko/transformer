@@ -110,7 +110,7 @@ Accept-Encoding: gzip, deflate
 Connection: close
 Content-Length: 67
 
-name=§foo§&lastname=§bar§&email=§foo+{tr:random(1,1000)}{tr}@example.com§
+name=§foo§&lastname=§bar§&email=§foo%2b{tr:random(1,1000)}{tr}@example.com§
 ```
 {tr:random(1,1000)}{tr} expression will be replaced with the random values (from 1 to 1000), e.g.:
 ```
@@ -123,7 +123,7 @@ Accept-Encoding: gzip, deflate
 Connection: close
 Content-Length: 47
 
-name=foo&lastname=bar&email=foo+115@example.com
+name=foo&lastname=bar&email=foo%2b115@example.com
 ```
 
 ## Use case IV
@@ -193,8 +193,8 @@ name={tr:random(1,100)&repeat(3)}{tr}
 {tr:b64()}{tr:long(10)}{tr}{tr} does not work as expected.
 Use chaining instead.
 1. Transformations parser is a simple (naive) regexp-based implementation and could not work when special characters will be used as a transformation parameter.
-Let's say you define transformation that accepts string parameter, using it as follow {tr:foo(abc&de)}{tr} will not work.
-1. Transformer is a simple tool that was created to deal with the specific cases I noticed during my work, and may not support all possible inputs, e.g. b64() transformer will fail for non-ascii data.
+Let's say you define transformation that accepts parameter, using it as follow {tr:foo(abc&de)}{tr} will not work.
+1. Transformer is a simple tool that was created to deal with the specific cases noticed during daily work, and may not support all possible input data, e.g. b64() transformer will fail for non-ascii data.
 In such case, just write own transformation that will handle your specific case.
 
 ## Warnings
