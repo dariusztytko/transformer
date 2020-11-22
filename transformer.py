@@ -12,16 +12,16 @@ import uuid
 
 transformations = {
     # encoders
-    'b64': lambda params, data: base64.b64encode(data),
-    'hex': lambda params, data: binascii.hexlify(data),
-    'json': lambda params, data: json.dumps(data)[1:-1],
-    'jwt': lambda params, data: base64.urlsafe_b64encode(data).replace(b'=', b''),
-    'url': lambda params, data: urllib.quote(data),
+    'tr_b64': lambda params, data: base64.b64encode(data),
+    'tr_hex': lambda params, data: binascii.hexlify(data),
+    'tr_json': lambda params, data: json.dumps(data)[1:-1],
+    'tr_jwt': lambda params, data: base64.urlsafe_b64encode(data).replace(b'=', b''),
+    'tr_url': lambda params, data: urllib.quote(data),
 
     # data generators
-    'long': lambda params, data: 'a' * int(params[0]),
-    'random': lambda params, data: str(random.randint(int(params[0]), int(params[1]))),
-    'uuid': lambda params, data: str(uuid.uuid4()),
+    'tr_long': lambda params, data: 'a' * int(params[0]),
+    'tr_random': lambda params, data: str(random.randint(int(params[0]), int(params[1]))),
+    'tr_uuid': lambda params, data: str(uuid.uuid4()),
 }
 
 
@@ -67,7 +67,7 @@ class BurpExtender(IBurpExtender, IHttpListener):
         for transformation_call in data.strip().split('&'):
             matches = re.match(r'(.+?)\((.*?)\)', transformation_call.strip())
             if matches:
-                transformation = matches.group(1).strip()
+                transformation = 'tr_' + matches.group(1).strip()
                 params = matches.group(2).strip()
                 if transformation in transformations:
                     transformation_calls.append({
