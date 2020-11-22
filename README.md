@@ -189,7 +189,7 @@ name={tr:random(1,100)&repeat(3)}{tr}
 ```
 
 ## Limitations
-1. Transformations can not be nested.
+1. Transformations cannot be nested.
 {tr:b64()}{tr:long(10)}{tr}{tr} does not work as expected.
 Use chaining instead.
 1. Transformations parser is a simple (naive) regexp-based implementation and could not work when special characters will be used as a transformation parameter.
