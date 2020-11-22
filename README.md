@@ -165,9 +165,9 @@ By default the following transformations are available:
 transformations = {
     # encoders
     'b64': lambda params, data: base64.b64encode(data),
-    'jwt': lambda params, data: base64.urlsafe_b64encode(data).replace(b'=', b''),
     'hex': lambda params, data: binascii.hexlify(data),
     'json': lambda params, data: json.dumps(data)[1:-1],
+    'jwt': lambda params, data: base64.urlsafe_b64encode(data).replace(b'=', b''),
     'url': lambda params, data: urllib.quote(data),
 
     # data generators
