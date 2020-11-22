@@ -171,9 +171,9 @@ transformations = {
     'url': lambda params, data: urllib.quote(data),
 
     # data generators
-    'uuid': lambda params, data: str(uuid.uuid4()),
     'long': lambda params, data: 'a' * int(params[0]),
     'random': lambda params, data: str(random.randint(int(params[0]), int(params[1]))),
+    'uuid': lambda params, data: str(uuid.uuid4()),
 }
 ```
 A new transformation could look like this:
@@ -202,7 +202,7 @@ Please be aware that Transformer extension works globally (for all BurpSuite too
 This may be dangerous if you testing untrusted application, especially if you defined own transformation doing dangerous operations, such like file system access.
 
 ## Tips
-Excellent [Loger++](https://portswigger.net/bappstore/470b7057b86f41c396a97903377f3d81) extension it is very useful in creating own transformation (allows to see result of the transformation).
+Excellent [Logger++](https://portswigger.net/bappstore/470b7057b86f41c396a97903377f3d81) extension it is very useful in creating own transformation (allows to see result of the transformation).
 
 ## Changes
 Please see the [CHANGELOG](CHANGELOG)

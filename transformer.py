@@ -19,9 +19,9 @@ transformations = {
     'url': lambda params, data: urllib.quote(data),
 
     # data generators
-    'uuid': lambda params, data: str(uuid.uuid4()),
     'long': lambda params, data: 'a' * int(params[0]),
     'random': lambda params, data: str(random.randint(int(params[0]), int(params[1]))),
+    'uuid': lambda params, data: str(uuid.uuid4()),
 }
 
 
